@@ -1,0 +1,32 @@
+.main {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  white-space: nowrap;
+  flex: 0 1 auto;
+
+  &.expanded {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  &.string {
+    color: var(--string-color);
+  }
+
+  &.number {
+    color: var(--number-color);
+  }
+
+  &.boolean {
+    color: var(--boolean-color);
+  }
+
+  &.null {
+    color: var(--null-color);
+  }
+
+  &.undefined {
+    color: var(--undefined-color);
+  }
+}

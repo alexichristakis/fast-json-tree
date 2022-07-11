@@ -1,0 +1,13 @@
+.main {
+  min-height: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.list {
+  width: 100%;
+
+  ol {
+    list-style: none;
+  }
+}

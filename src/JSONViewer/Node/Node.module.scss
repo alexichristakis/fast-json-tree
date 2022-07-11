@@ -1,0 +1,36 @@
+@import "../../shared.scss";
+
+.main {
+  font-family: "Courier New", Courier, monospace;
+  line-height: 16px;
+  font-size: 12px;
+  border-radius: 4px;
+
+  &.childHovered {
+    background-color: rgba(43, 132, 184, 0.1);
+  }
+
+  &.focusVisible {
+    box-shadow: inset 0 0 0 1px rgba(43, 132, 184, 0.5);
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.button {
+  @include buttonReset();
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  max-width: 100%;
+  overflow: hidden;
+  padding-left: calc(var(--depth) * 12px);
+}
+
+.label {
+  display: inline;
+  font-weight: bold;
+  margin-right: 4px;
+}

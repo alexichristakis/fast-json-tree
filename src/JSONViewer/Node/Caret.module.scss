@@ -1,0 +1,15 @@
+.main {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  transform: translateX(-100%);
+  padding-right: 2px;
+  height: 100%;
+  color: var(--caret-color);
+
+  &.expanded {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+}
