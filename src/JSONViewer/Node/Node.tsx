@@ -13,7 +13,7 @@ import useFocusVisible from "../../FocusVisible/useFocusVisible";
 
 const cx = classNames.bind(styles);
 
-type NodeProps = {
+export type NodeProps = {
   style?: CSSProperties;
   expanded?: boolean;
   focused?: boolean;

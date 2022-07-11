@@ -32,3 +32,5 @@ export interface ArrayNode extends ObjectNode {
 }
 
 export type Node = PrimitiveNode | ObjectNode | ArrayNode;
+
+export type NodeWithExpanded = Node & { expanded: boolean };

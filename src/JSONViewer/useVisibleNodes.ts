@@ -1,9 +1,7 @@
 import { useMemo } from "react";
-import { Node } from "./types";
+import { NodeWithExpanded } from "./types";
 import useExpandedNodes from "./useExpandedNodes";
 import useNodes from "./useNodes";
-
-type NodeWithExpanded = Node & { expanded: boolean };
 
 const useVisibleNodes = (
   value: unknown
