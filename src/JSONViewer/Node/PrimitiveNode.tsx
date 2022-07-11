@@ -17,7 +17,6 @@ const PrimitiveNode: FC<PrimitiveNodeProps> = ({
   node,
 }) => {
   const { value, type } = node;
-  console.log({ expanded });
   return (
     <div className={cx("main", type, { expanded })}>
       {formatPrimitiveValue(value, type)}

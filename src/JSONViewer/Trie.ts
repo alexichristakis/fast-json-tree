@@ -10,9 +10,9 @@ export type TrieNode = {
 
 export type Trie = {
   children: Children;
-  nodeVisible: (selector: Selector) => boolean;
-  toggleExpanded: (selector: Selector) => void;
-  getExpanded: (selector: Selector) => boolean;
+  // nodeVisible: (selector: Selector) => boolean;
+  // toggleExpanded: (selector: Selector) => void;
+  // getExpanded: (selector: Selector) => boolean;
 };
 
 const makeNode = (expanded = true, children: Children = {}): TrieNode => ({
@@ -20,7 +20,7 @@ const makeNode = (expanded = true, children: Children = {}): TrieNode => ({
   children,
 });
 
-const makeNodeVisible = (children: Children) => {
+export const makeNodeVisible = (children: Children) => {
   return (selector: Selector) => {
     const [root, ...path] = selector;
 
@@ -41,7 +41,7 @@ const makeNodeVisible = (children: Children) => {
   };
 };
 
-const makeToggleExpanded = (children: Children) => {
+export const makeToggleExpanded = (children: Children) => {
   return (selector: Selector) => {
     const [root, ...path] = selector;
 
@@ -54,7 +54,7 @@ const makeToggleExpanded = (children: Children) => {
   };
 };
 
-const makeGetExpanded = (children: Children) => {
+export const makeGetExpanded = (children: Children) => {
   return (selector: Selector) => {
     const [root, ...path] = selector;
 
@@ -88,8 +88,8 @@ export const makeTrie = (nodes: Node[]): Trie => {
 
   return {
     children,
-    nodeVisible: makeNodeVisible(children),
-    toggleExpanded: makeToggleExpanded(children),
-    getExpanded: makeGetExpanded(children),
+    // nodeVisible: makeNodeVisible(children),
+    // toggleExpanded: makeToggleExpanded(children),
+    // getExpanded: makeGetExpanded(children),
   };
 };

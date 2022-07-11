@@ -1,4 +1,4 @@
-import { makeTrie } from "./Trie";
+import { makeNodeVisible, makeToggleExpanded, makeTrie } from "./Trie";
 import { getNodes } from "./useNodes";
 
 const sample = { a: { b: { c: { d: "hi" } } } };
@@ -23,12 +23,13 @@ describe("Trie", () => {
     it("works", () => {
       const nodes = getNodes(sample);
       const trie = makeTrie(nodes);
-      trie.toggleExpanded(["root"]);
+      const toggleExpanded = makeToggleExpanded(trie.children);
+      toggleExpanded(["root"]);
 
       expect(trie.children.root.expanded).toBe(true);
       expect(trie.children.root.children.a.expanded).toBe(false);
 
-      trie.toggleExpanded(["root", "a"]);
+      toggleExpanded(["root", "a"]);
       expect(trie.children.root.expanded).toBe(true);
       expect(trie.children.root.children.a.expanded).toBe(true);
     });
@@ -38,19 +39,22 @@ describe("Trie", () => {
     it("works", () => {
       const nodes = getNodes(sample);
       const trie = makeTrie(nodes);
-      expect(trie.nodeVisible(["root"])).toBe(true);
-      expect(trie.nodeVisible(["root", "a"])).toBe(false);
-      expect(trie.nodeVisible(["root", "a", "b"])).toBe(false);
+      const nodeVisible = makeNodeVisible(trie.children);
+      const toggleExpanded = makeToggleExpanded(trie.children);
 
-      trie.toggleExpanded(["root"]);
-      expect(trie.nodeVisible(["root", "a"])).toBe(true);
-      expect(trie.nodeVisible(["root", "a", "b"])).toBe(false);
-      expect(trie.nodeVisible(["root", "a", "b", "c"])).toBe(false);
+      expect(nodeVisible(["root"])).toBe(true);
+      expect(nodeVisible(["root", "a"])).toBe(false);
+      expect(nodeVisible(["root", "a", "b"])).toBe(false);
 
-      trie.toggleExpanded(["root", "a"]);
-      expect(trie.nodeVisible(["root", "a"])).toBe(true);
-      expect(trie.nodeVisible(["root", "a", "b"])).toBe(true);
-      expect(trie.nodeVisible(["root", "a", "b", "c"])).toBe(false);
+      toggleExpanded(["root"]);
+      expect(nodeVisible(["root", "a"])).toBe(true);
+      expect(nodeVisible(["root", "a", "b"])).toBe(false);
+      expect(nodeVisible(["root", "a", "b", "c"])).toBe(false);
+
+      toggleExpanded(["root", "a"]);
+      expect(nodeVisible(["root", "a"])).toBe(true);
+      expect(nodeVisible(["root", "a", "b"])).toBe(true);
+      expect(nodeVisible(["root", "a", "b", "c"])).toBe(false);
     });
   });
 });

@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, memo } from "react";
 import Node from "./Node";
 import { Node as NodeType } from "./types";
 import useNode from "./useNode";
@@ -14,4 +14,4 @@ const NodeRenderer: FC<NodeRendererProps> = ({ node, index, style }) => {
   return <Node style={style} {...props} />;
 };
 
-export default NodeRenderer;
+export default memo(NodeRenderer);

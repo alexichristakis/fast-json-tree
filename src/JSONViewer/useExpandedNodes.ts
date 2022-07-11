@@ -1,8 +1,9 @@
 import { useState } from "react";
 import useCallbackRef from "../hooks/useCallbackRef";
 import useUpdateEffect from "../hooks/useUpdateEffect";
-import { makeTrie, Trie } from "./Trie";
+import { makeToggleExpanded, makeTrie, Trie } from "./Trie";
 import { Node } from "./types";
+import produce from "immer";
 
 const useExpandedNodes = (nodes: Node[]): [Trie, (id: string) => void] => {
   const [trie, setTrie] = useState(() => makeTrie(nodes));
@@ -12,9 +13,12 @@ const useExpandedNodes = (nodes: Node[]): [Trie, (id: string) => void] => {
   }, [nodes]);
 
   const onToggleExpanded = useCallbackRef((id: string) => {
-    const nextTrie = { ...trie };
-    nextTrie.toggleExpanded(id.split("."));
-    setTrie(nextTrie);
+    const selector = id.split(".");
+    setTrie(
+      produce(({ children }) => {
+        makeToggleExpanded(children)(selector);
+      })
+    );
   });
 
   return [trie, onToggleExpanded];
